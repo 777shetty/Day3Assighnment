@@ -1,0 +1,76 @@
+public class SnakeLadder {
+	int position;
+	int count;
+	String name;
+	public static final int NOPLAY=0;
+	public static final int LADDER=1;
+	public static final int SNAKE=2;
+	
+	public SnakeLadder(String name) {
+		this.position=0;
+		this.count=0;
+		this.name=name;
+	}
+	public int rollDice() {
+		count+=1;
+		return ((int) (Math.floor(Math.random()*10)%6)+1);
+	}
+	public int getCount() {
+		return count;
+	}
+	public void play() {
+		int result=rollDice();
+		System.out.println(this.name+":\nRolling Dice value="+result);
+		
+		int option=((int) Math.floor(Math.random()*10)%3);
+		switch(option) {
+		case NOPLAY:
+			result=0;
+			System.out.println("\t OPTION:NOPLAY");
+			break;
+		case LADDER:
+			System.out.println("\t OPTION:LADDER");
+			break;
+		case SNAKE:
+			System.out.println("\t OPTION:SNAKE");
+			result=-result;
+			break;
+		default:
+			System.out.println("Invalid Option");
+			break;
+		}
+		position+=result;
+		if(position<0) {
+			position=0;
+		}
+		else if(position>100) {
+			position-=result;
+		}
+		System.out.println("\n POSITION: "+position+"\n");
+		if(option==LADDER && position!=100) {
+			this.play();
+		}
+	}
+	public static void main(String[] args) {
+		System.out.println("Welcome to Sanke and Ladder Game!");
+		System.out.println();
+		SnakeLadder player1=new SnakeLadder("Player1");
+		SnakeLadder player2=new SnakeLadder("Player2");
+		
+		while(true) {
+			player1.play();
+			if(player1.position==100) {
+				System.out.print("The number of times the dice was Played to win the game by ");
+				System.out.println(player1.name+" :"+player1.getCount());
+				break;
+			}
+			player2.play();
+			if(player2.position==100) {
+				System.out.print("The number of times the dice was played to win the game by ");
+				System.out.println(player2.name+" :"+player2.getCount());
+				break;
+			}
+		}
+	}
+
+}
