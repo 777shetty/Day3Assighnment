@@ -1,0 +1,44 @@
+public class EmployeeWageBuilderUC1 {
+	public final static int IS_PART_TIME=1;
+	public final static int IS_FULL_TIME=2;
+	public final  static int EMP_RATE_PER_HOUR=20;
+	public final  static int NUM_OF_WORK_DAYS=20;
+	public final  static int MAX_HOURS_IN_A_MONTH=100;
+	
+	public static void main(String[] args) {
+		
+		int TotalEmpWage=0;
+		int totalEmphrs = 0;
+		int totalWorkingdays=0;
+		while(totalEmphrs<=MAX_HOURS_IN_A_MONTH && totalWorkingdays<NUM_OF_WORK_DAYS)
+		{
+			int emphours =0;
+		     totalWorkingdays++;
+			int empcheck= (int)Math.floor(Math.random()*10)%3;
+			
+		
+		switch (empcheck)
+		{
+		case  IS_FULL_TIME:
+		emphours=8;
+		break;
+		
+		case IS_PART_TIME:
+		emphours=4;
+		break;
+		
+		default :
+		   emphours=0;
+		}
+		
+		totalEmphrs+=emphours;
+		int empwage =emphours*EMP_RATE_PER_HOUR;
+		TotalEmpWage+=empwage;
+		System.out.println("Employee wages="+empwage);
+		}
+		
+		System.out.println("Total Employee wages="+TotalEmpWage);
+    }
+}
+
+
